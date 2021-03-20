@@ -13,13 +13,25 @@ import dominio.Empleado;
  */
 public class ControlEmpleados extends INegocio<Empleado>{
 
+    public ControlEmpleados(){
+        
+    }
+    
+    /**
+     * Método que se encarga de agregar empleados a la base de datos.
+     * @param entidad Empleado
+     */
     @Override
     public void agregar(Empleado entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //Conexion bd
     }
 
+    /**
+     * Método que se encarga de eliminar empleados de la base de datos.
+     * @param entidad Empleado
+     */
     @Override
     public void eliminar(Empleado entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //Conexion bd
     } 
 }

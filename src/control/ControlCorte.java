@@ -5,10 +5,25 @@
  */
 package control;
 
+import enums.TipoCorte;
+
 /**
  *
  * @author laura
  */
 public class ControlCorte {
     
+    public ControlCorte(){
+        
+    }
+    
+    /**
+     * Método que se encarga de realizar el corte de caja
+     * @param tipo tipo de corte apertura/cierre
+     * @return Dinero sobrante
+     */
+    public float realizarCorte(TipoCorte tipo){
+        float restante = 0;
+        return restante;
+    }
 }
