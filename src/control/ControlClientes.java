@@ -5,10 +5,25 @@
  */
 package control;
 
+import dominio.Cliente;
+
 /**
  *
  * @author laura
  */
-public class ControlClientes {
+public class ControlClientes extends INegocio<Cliente>{
+
+    @Override
+    public void agregar(Cliente entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void eliminar(Cliente entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
+    
     
 }

@@ -5,10 +5,21 @@
  */
 package control;
 
+import dominio.Empleado;
+
 /**
  *
  * @author laura
  */
-public class ControlEmpleados {
-    
+public class ControlEmpleados extends INegocio<Empleado>{
+
+    @Override
+    public void agregar(Empleado entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void eliminar(Empleado entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    } 
 }
