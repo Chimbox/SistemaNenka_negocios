@@ -48,4 +48,13 @@ public class ControlProducto extends INegocio<Producto>{
         
         return producto;
     }
+    
+    /**
+     * Método que se encarga de modificar o actualizar el producto de la base de datos. 
+     * @param entidad Producto actualizado
+     */
+    @Override
+    public void modificar(Producto entidad) {
+        //Conexion bd
+    }
 }

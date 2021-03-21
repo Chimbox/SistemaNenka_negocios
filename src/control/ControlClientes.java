@@ -13,14 +13,31 @@ import dominio.Cliente;
  */
 public class ControlClientes extends INegocio<Cliente>{
 
+    /**
+     * Método que se encarga de agregar un nuevo cliente frecuente a la base de datos
+     * @param entidad cliente que se va a agregar
+     */
     @Override
     public void agregar(Cliente entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //Conexion bd
     }
 
+    /**
+     * Método que se encarga de eliminar de la base de datos a un cliente
+     * @param entidad Cliente que se va a eliminar
+     */
     @Override
     public void eliminar(Cliente entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //Conexion bd
+    }
+
+    /**
+     * Método que se encarga de modificar o actualizar los datos de un cliente
+     * @param entidad cliente actualizado
+     */
+    @Override
+    public void modificar(Cliente entidad) {
+        //Conexion bd
     }
 
    

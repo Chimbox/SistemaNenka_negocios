@@ -12,4 +12,5 @@ package control;
 public abstract class INegocio <T> {
     public abstract void agregar(T entidad);
     public abstract void eliminar(T entidad);
+    public abstract void modificar(T entidad);
 }

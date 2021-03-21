@@ -34,4 +34,13 @@ public class ControlEmpleados extends INegocio<Empleado>{
     public void eliminar(Empleado entidad) {
         //Conexion bd
     } 
+
+    /**
+     * Método que se encarga de modificar o actualizar al empleado
+     * @param entidad empleado actualizado
+     */
+    @Override
+    public void modificar(Empleado entidad) {
+        //Conexion bd
+    }
 }
