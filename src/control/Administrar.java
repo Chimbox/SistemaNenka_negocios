@@ -9,7 +9,7 @@ package control;
  *
  * @author laura
  */
-public abstract class INegocio <T> {
+public abstract class Administrar <T>{
     public abstract void agregar(T entidad);
     public abstract void eliminar(T entidad);
     public abstract void modificar(T entidad);

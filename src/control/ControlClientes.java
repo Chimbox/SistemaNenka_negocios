@@ -11,7 +11,7 @@ import dominio.Cliente;
  *
  * @author laura
  */
-public class ControlClientes extends INegocio<Cliente>{
+public class ControlClientes extends Administrar<Cliente>{
 
     /**
      * Método que se encarga de agregar un nuevo cliente frecuente a la base de datos
@@ -19,7 +19,7 @@ public class ControlClientes extends INegocio<Cliente>{
      */
     @Override
     public void agregar(Cliente entidad) {
-        //Conexion bd
+        //Conexion
     }
 
     /**

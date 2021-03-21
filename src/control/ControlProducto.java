@@ -11,7 +11,7 @@ import dominio.Producto;
  *
  * @author laura
  */
-public class ControlProducto extends INegocio<Producto>{
+public class ControlProducto extends Administrar<Producto>{
 
     public ControlProducto(){
         

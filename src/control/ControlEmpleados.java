@@ -11,10 +11,15 @@ import dominio.Empleado;
  *
  * @author laura
  */
-public class ControlEmpleados extends INegocio<Empleado>{
+public class ControlEmpleados extends Administrar<Empleado>{
 
     public ControlEmpleados(){
         
+    }
+    
+    public boolean iniciarSeson(String usuario, String contrasenia){
+        //Conexion bd
+        return true;
     }
     
     /**
@@ -37,7 +42,7 @@ public class ControlEmpleados extends INegocio<Empleado>{
 
     /**
      * Método que se encarga de modificar o actualizar al empleado
-     * @param entidad empleado actualizado
+     * @param entidad empleado act
      */
     @Override
     public void modificar(Empleado entidad) {
