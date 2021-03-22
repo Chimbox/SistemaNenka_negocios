@@ -10,6 +10,7 @@ import dominio.DetalleCompra;
 import dominio.Empleado;
 import dominio.Producto;
 import dominio.Proveedor;
+import fdatos.IDatos;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -17,15 +18,17 @@ import java.util.Date;
  *      
  * @author laura
  */
-public class ControlCompra{
-    ArrayList<DetalleCompra> productos;
-    Compra compra;
+class ControlCompra extends Administrar<Compra>{
+    
+    private ArrayList<DetalleCompra> productos;
+    private Compra compra;
     
     /**
      * Método constructor que se encarga de inicializar los productos que ingresaran
      * a la compra
      */
-    public ControlCompra(){
+    public ControlCompra(IDatos datos){
+        super(datos);
         productos = new ArrayList<>();
     }
     
@@ -53,7 +56,7 @@ public class ControlCompra{
         compra = new Compra(new Date(), calcularTotal());
         compra.setDetalleCompras(productos);
         compra.setProveedor(proveedor);
-        ControlProducto cp = new ControlProducto();
+        ControlProducto cp = new ControlProducto(datos);
         for (DetalleCompra producto : compra.getDetalleCompras()) {
             for (int i = 0; i < producto.getCantidad(); i++) {
                 cp.agregar(producto.getProducto());
@@ -89,6 +92,21 @@ public class ControlCompra{
         //Conexion bd
         
         return ventas;
+    }
+
+    @Override
+    public void agregar(Compra entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void eliminar(Compra entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void modificar(Compra entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

@@ -8,6 +8,7 @@ package control;
 import dominio.Corte;
 import dominio.Venta;
 import enums.TipoCorte;
+import fdatos.IDatos;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -15,13 +16,14 @@ import java.util.Date;
  *
  * @author laura
  */
-public class ControlCorte {
+class ControlCorte extends Administrar<Corte>{
 
-    ControlVentas ventas;
-    Corte corte;
+    private ControlVentas ventas;
+    private Corte corte;
 
-    public ControlCorte() {
-        ventas = new ControlVentas();
+    public ControlCorte(IDatos datos) {
+        super(datos);
+        ventas = new ControlVentas(datos);
     }
 
     /**
@@ -44,5 +46,20 @@ public class ControlCorte {
         }
         corte = new Corte(500, new Date(), TipoCorte.APERTURA);
         return 0;
+    }
+
+    @Override
+    public void agregar(Corte entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void eliminar(Corte entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void modificar(Corte entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

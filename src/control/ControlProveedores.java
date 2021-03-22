@@ -6,15 +6,18 @@
 package control;
 
 import dominio.Proveedor;
+import fdatos.IDatos;
 
 /**
  *
  * @author laura
  */
-public class ControlProveedores extends Administrar<Proveedor>{
-    public ControlProveedores(){
-        
+class ControlProveedores extends Administrar<Proveedor>{
+
+    public ControlProveedores(IDatos datos) {
+        super(datos);
     }
+    
     
     /**
      * Método que se encarga de agregar proveedores a la base de datos.

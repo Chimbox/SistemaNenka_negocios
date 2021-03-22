@@ -1,16 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package control;
+
+import fdatos.IDatos;
 
 /**
  *
  * @author laura
  */
-public abstract class Administrar <T>{
+abstract class Administrar <T>{
+    protected IDatos datos;
     public abstract void agregar(T entidad);
     public abstract void eliminar(T entidad);
     public abstract void modificar(T entidad);
+
+    public Administrar(IDatos datos) {
+        this.datos = datos;
+    }
 }

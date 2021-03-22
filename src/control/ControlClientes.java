@@ -6,12 +6,17 @@
 package control;
 
 import dominio.Cliente;
+import fdatos.IDatos;
 
 /**
  *
  * @author laura
  */
-public class ControlClientes extends Administrar<Cliente>{
+class ControlClientes extends Administrar<Cliente>{
+
+    public ControlClientes(IDatos datos) {
+        super(datos);
+    }
 
     /**
      * Método que se encarga de agregar un nuevo cliente frecuente a la base de datos

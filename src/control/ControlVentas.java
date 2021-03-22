@@ -10,6 +10,7 @@ import dominio.DetalleVenta;
 import dominio.Empleado;
 import dominio.Producto;
 import dominio.Venta;
+import fdatos.IDatos;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -17,16 +18,17 @@ import java.util.Date;
  *
  * @author laura
  */
-public class ControlVentas {
+class ControlVentas extends Administrar<Venta>{
     
-    ArrayList<DetalleVenta> productos;
-    Venta venta;
+    private ArrayList<DetalleVenta> productos;
+    private Venta venta;
     
     /**
      * Método constructor que se encarga de inicializar los productos que ingresaran
      * a la venta.
      */
-    public ControlVentas(){
+    public ControlVentas(IDatos datos){
+        super(datos);
         productos = new ArrayList<>();
     }
     
@@ -53,7 +55,7 @@ public class ControlVentas {
     public void realizarVenta(Empleado em, Cliente c){
         venta = new Venta(new Date(), calcularTotal(), em, c);
         venta.setDetallesVentas(productos);
-        ControlProducto cp = new ControlProducto();
+        ControlProducto cp = new ControlProducto(datos);
         for (DetalleVenta producto : venta.getDetallesVentas()) {
             for (int i = 0; i < producto.getCantidad(); i++) {
                 cp.eliminar(producto.getProducto());
@@ -89,6 +91,21 @@ public class ControlVentas {
         //Conexion bd
         
         return ventas;
+    }
+
+    @Override
+    public void agregar(Venta entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void eliminar(Venta entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void modificar(Venta entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

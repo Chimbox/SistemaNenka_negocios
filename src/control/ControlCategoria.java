@@ -7,17 +7,17 @@ package control;
 
 import dominio.Categoria;
 import dominio.Producto;
+import fdatos.IDatos;
 
 /**
  *
  * @author laura
  */
-public class ControlCategoria extends Administrar<Categoria>{
-    
-    public ControlCategoria(){
-        
+class ControlCategoria extends Administrar<Categoria>{
+
+    public ControlCategoria(IDatos datos) {
+        super(datos);
     }
-    
     /**
      * Método que se encarga de crear una nueva categoria para el producto
      * @param entidad Categoria a crear

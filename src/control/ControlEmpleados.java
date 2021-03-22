@@ -6,16 +6,19 @@
 package control;
 
 import dominio.Empleado;
+import fdatos.IDatos;
 
 /**
  *
  * @author laura
  */
-public class ControlEmpleados extends Administrar<Empleado>{
+class ControlEmpleados extends Administrar<Empleado>{
 
-    public ControlEmpleados(){
-        
+    public ControlEmpleados(IDatos datos) {
+        super(datos);
     }
+
+    
     
     public boolean iniciarSeson(String usuario, String contrasenia){
         //Conexion bd

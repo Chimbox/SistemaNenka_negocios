@@ -6,15 +6,16 @@
 package control;
 
 import dominio.Producto;
+import fdatos.IDatos;
 
 /**
  *
  * @author laura
  */
-public class ControlProducto extends Administrar<Producto>{
+class ControlProducto extends Administrar<Producto>{
 
-    public ControlProducto(){
-        
+    public ControlProducto(IDatos datos) {
+        super(datos);
     }
     
     /**
