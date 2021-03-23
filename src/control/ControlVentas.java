@@ -75,11 +75,18 @@ class ControlVentas extends Administrar<Venta>{
         
         return ventas;
     }
+    
+    public Venta crearNuevaVenta(){
+        productos=new ArrayList<>();
+        venta=new Venta();
+        return venta;
+    }
 
     @Override
     public void agregar(Venta entidad) {
         this.venta = entidad;
         this.venta.setDetallesVentas(productos);
+        venta.setTotal(calcularTotal());
         datos.guardarVenta(venta);
         
         ControlProducto cp = new ControlProducto(datos);

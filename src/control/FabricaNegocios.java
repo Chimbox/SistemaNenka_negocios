@@ -9,7 +9,7 @@ import fdatos.FabricaDatos;
 public class FabricaNegocios {
     private static FNegocios fachada;
 
-    public static FNegocios getFachada() {
+    public static INegocios getFachada() {
         if(fachada==null){
             fachada=new FNegocios(FabricaDatos.getFachada());
         }

@@ -7,6 +7,7 @@ package control;
 
 import dominio.Empleado;
 import fdatos.IDatos;
+import java.util.List;
 
 /**
  *
@@ -50,5 +51,9 @@ class ControlEmpleados extends Administrar<Empleado>{
     @Override
     public void modificar(Empleado entidad) {
         //Conexion bd
+    }
+    
+    public List<Empleado> buscarEmpleados(){
+        return datos.obtenerEmpleados();
     }
 }

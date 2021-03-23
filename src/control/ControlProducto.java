@@ -64,4 +64,9 @@ class ControlProducto extends Administrar<Producto>{
     public void modificar(Producto entidad) {
         //Conexion bd
     }
+    
+    
+    public List<Producto> obtenerProductos(){
+        return datos.obtenerProductos();
+    }
 }

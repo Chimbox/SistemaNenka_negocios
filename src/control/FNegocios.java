@@ -1,8 +1,12 @@
 package control;
 
+import dominio.Cliente;
+import dominio.Empleado;
 import dominio.Producto;
 import dominio.Venta;
 import fdatos.IDatos;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -98,7 +102,27 @@ class FNegocios implements INegocios{
     }
     
     @Override
-    public void agregarProducto(Producto producto, int cantidad){
+    public void agregarProductoCarrito(Producto producto, int cantidad){
         getCtrlVentas().ingresarProducto(producto, cantidad);
+    }
+
+    @Override
+    public Venta nuevaVenta() {
+        return getCtrlVentas().crearNuevaVenta();
+    }
+
+    @Override
+    public List<Producto> obtenerProductos() {
+        return getCtrlProductos().obtenerProductos();
+    }
+
+    @Override
+    public List<Cliente> obtenerClientes() {
+        return getCtrlClientes().buscarClientes();
+    }
+
+    @Override
+    public List<Empleado> obtenerEmpleados() {
+        return getCtrlEmpleados().buscarEmpleados();
     }
 }

@@ -7,6 +7,7 @@ package control;
 
 import dominio.Cliente;
 import fdatos.IDatos;
+import java.util.List;
 
 /**
  *
@@ -45,7 +46,7 @@ class ControlClientes extends Administrar<Cliente>{
         //Conexion bd
     }
 
-   
-    
-    
+    public List<Cliente> buscarClientes(){
+        return datos.obtenerClientes();
+    }
 }
