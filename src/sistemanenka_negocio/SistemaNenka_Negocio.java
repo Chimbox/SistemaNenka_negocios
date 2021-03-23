@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package sistemanenka_negocio;
-
 /**
+
  *
  * @author laura
  */
@@ -15,7 +15,6 @@ public class SistemaNenka_Negocio {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
     }
     
 }

@@ -84,16 +84,21 @@ class FNegocios implements INegocios{
 
     @Override
     public boolean validarDisponibilidad(Producto producto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return getCtrlProductos().buscarProducto(producto.getNombre()).getStock() > 0;
     }
 
     @Override
     public void eliminarVenta(Venta venta) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        getCtrlVentas().eliminar(venta);
     }
 
     @Override
-    public Venta guardarVenta(Venta venta) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void guardarVenta(Venta venta) {
+        getCtrlVentas().agregar(venta);
+    }
+    
+    @Override
+    public void agregarProducto(Producto producto, int cantidad){
+        getCtrlVentas().ingresarProducto(producto, cantidad);
     }
 }

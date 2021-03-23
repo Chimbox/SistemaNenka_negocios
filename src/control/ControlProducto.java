@@ -7,6 +7,8 @@ package control;
 
 import dominio.Producto;
 import fdatos.IDatos;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -24,7 +26,7 @@ class ControlProducto extends Administrar<Producto>{
      */
     @Override
     public void agregar(Producto entidad) {
-        //Conexión bd
+        //Conexion bd
     }
 
     /**
@@ -34,7 +36,7 @@ class ControlProducto extends Administrar<Producto>{
      */
     @Override
     public void eliminar(Producto entidad) {
-        //Conexion bd
+        datos.guardarProducto(entidad);
     }
     
     /**
@@ -43,11 +45,15 @@ class ControlProducto extends Administrar<Producto>{
      * @return Producto encontrado en el inventario
      */
     public Producto buscarProducto(String nombre){
-        Producto producto = null;
+        List<Producto> productos = datos.obtenerProductos();
+        for (Producto producto : productos) {
+            if(producto.getNombre().equalsIgnoreCase(nombre)){
+                return producto;
+            }
+            
+        }
+        return null;
         
-        //Conexión bd
-        
-        return producto;
     }
     
     /**

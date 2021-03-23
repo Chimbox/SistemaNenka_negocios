@@ -10,5 +10,6 @@ import dominio.Venta;
 public interface INegocios {
     public boolean validarDisponibilidad(Producto producto);
     public void eliminarVenta(Venta venta);
-    public Venta guardarVenta(Venta venta);
+    public void guardarVenta(Venta venta);
+    public void agregarProducto(Producto producto, int cantidad);
 }

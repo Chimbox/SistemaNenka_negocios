@@ -37,32 +37,15 @@ class ControlVentas extends Administrar<Venta>{
      * @param producto Producto que se va a ingresar a la venta
      * @param cantidad Cantidad del producto
      */
-    public void ingresarProducto(Producto producto, float cantidad){
+    public void ingresarProducto(Producto producto, int cantidad){
         float precioUnitario = producto.getPrecio();
         float importe = cantidad * precioUnitario;
         DetalleVenta ventaUnitaria = new DetalleVenta(cantidad, precioUnitario, importe, producto);
         productos.add(ventaUnitaria);
         
         //Conexion con bd
+       datos.guardarProducto(producto);
         
-    }
-    
-    /**
-     * Método que se encarga de realizar la venta en base a los productos ingresados
-     * @param em Empleado que se encarga de realizar la venta
-     * @param c Cliente que realiza la compra
-     */
-    public void realizarVenta(Empleado em, Cliente c){
-        venta = new Venta(new Date(), calcularTotal(), em, c);
-        venta.setDetallesVentas(productos);
-        ControlProducto cp = new ControlProducto(datos);
-        for (DetalleVenta producto : venta.getDetallesVentas()) {
-            for (int i = 0; i < producto.getCantidad(); i++) {
-                cp.eliminar(producto.getProducto());
-            }
-        }
-        
-        //Conexion bd
     }
     
     /**
@@ -95,7 +78,16 @@ class ControlVentas extends Administrar<Venta>{
 
     @Override
     public void agregar(Venta entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.venta = entidad;
+        this.venta.setDetallesVentas(productos);
+        datos.guardarVenta(venta);
+        
+        ControlProducto cp = new ControlProducto(datos);
+        for (DetalleVenta producto : venta.getDetallesVentas()) {
+            Producto p = producto.getProducto();
+            p.setStock(p.getStock()-producto.getCantidad());
+            cp.eliminar(p);
+        }
     }
 
     @Override
