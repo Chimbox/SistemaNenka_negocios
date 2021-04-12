@@ -5,9 +5,7 @@
  */
 package control;
 
-import dominio.Cliente;
 import dominio.DetalleVenta;
-import dominio.Empleado;
 import dominio.Producto;
 import dominio.Venta;
 import fdatos.IDatos;
@@ -62,7 +60,7 @@ class ControlVentas extends Administrar<Venta>{
     }
     
     /**
-     * Método que se encarga de mostrar las ventas realizas en base a las fechas 
+     * Método que se encarga de mostrar las ventas realizas con base en las fechas 
      * determinadas.
      * @param fechaInicio Fecha de inicio
      * @param fechaFin Fecha fin

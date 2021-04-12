@@ -12,7 +12,7 @@ import java.util.List;
  * @author Alfonso Felix
  */
 public interface INegocios {
-    public boolean validarDisponibilidad(Producto producto);
+    public boolean validarDisponibilidad(Producto producto, double cantidadDeseada);
     public void eliminarVenta(Venta venta);
     public void guardarVenta(Venta venta);
     public void agregarProductoCarrito(Producto producto, int cantidad);

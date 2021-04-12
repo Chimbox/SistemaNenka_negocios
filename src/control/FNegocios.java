@@ -5,7 +5,6 @@ import dominio.Empleado;
 import dominio.Producto;
 import dominio.Venta;
 import fdatos.IDatos;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -87,8 +86,8 @@ class FNegocios implements INegocios{
     }
 
     @Override
-    public boolean validarDisponibilidad(Producto producto) {
-        return getCtrlProductos().buscarProducto(producto.getNombre()).getStock() > 0;
+    public boolean validarDisponibilidad(Producto producto, double cantidadDeseada) {
+        return getCtrlProductos().validarDisponibilidad(producto, cantidadDeseada);
     }
 
     @Override

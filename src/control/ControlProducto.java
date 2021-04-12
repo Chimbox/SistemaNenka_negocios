@@ -56,6 +56,10 @@ class ControlProducto extends Administrar<Producto>{
         
     }
     
+     boolean validarDisponibilidad(Producto producto, double cantidadDeseada){
+        return datos.buscarProducto(producto.getId()).getStock()>=cantidadDeseada;
+    }
+    
     /**
      * Método que se encarga de modificar o actualizar el producto de la base de datos. 
      * @param entidad Producto actualizado
