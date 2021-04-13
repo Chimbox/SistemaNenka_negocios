@@ -21,9 +21,9 @@ class ControlCorte extends Administrar<Corte>{
     private ControlVentas ventas;
     private Corte corte;
 
-    public ControlCorte(IDatos datos) {
+    public ControlCorte(IDatos datos, ControlVentas ctrlVentas) {
         super(datos);
-        ventas = new ControlVentas(datos);
+        this.ventas=ctrlVentas;
     }
 
     /**
@@ -32,8 +32,8 @@ class ControlCorte extends Administrar<Corte>{
      * @param tipo tipo de corte apertura/cierre
      * @return Dinero sobrante
      */
-    public float realizarCorte(TipoCorte tipo) {
-        float totalVenta = 0;
+    public double realizarCorte(TipoCorte tipo) {
+        double totalVenta = 0;
         if (tipo == TipoCorte.CORTE) {
             ArrayList<Venta> ventasDiarias = ventas.consultarVentas(new Date(), new Date());
             for (Venta venta : ventasDiarias) {

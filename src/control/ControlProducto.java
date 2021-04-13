@@ -66,9 +66,12 @@ class ControlProducto extends Administrar<Producto>{
      */
     @Override
     public void modificar(Producto entidad) {
-        //Conexion bd
+        datos.guardarProducto(entidad);
     }
     
+    public Producto buscarProducto(int id){
+        return datos.buscarProducto(id);
+    }
     
     public List<Producto> obtenerProductos(){
         return datos.obtenerProductos();

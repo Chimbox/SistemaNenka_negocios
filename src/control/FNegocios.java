@@ -1,6 +1,7 @@
 package control;
 
 import dominio.Cliente;
+import dominio.DetalleVenta;
 import dominio.Empleado;
 import dominio.Producto;
 import dominio.Venta;
@@ -52,7 +53,7 @@ class FNegocios implements INegocios{
 
     public static ControlCorte getCtrlCortes() {
         if(ctrlCortes==null){
-            ctrlCortes=new ControlCorte(datos);
+            ctrlCortes=new ControlCorte(datos, getCtrlVentas());
         }
         return ctrlCortes;
     }
@@ -80,7 +81,7 @@ class FNegocios implements INegocios{
 
     public static ControlVentas getCtrlVentas() {
         if(ctrlVentas==null){
-            ctrlVentas=new ControlVentas(datos);
+            ctrlVentas=new ControlVentas(datos, getCtrlProductos());
         }
         return ctrlVentas;
     }
@@ -89,20 +90,15 @@ class FNegocios implements INegocios{
     public boolean validarDisponibilidad(Producto producto, double cantidadDeseada) {
         return getCtrlProductos().validarDisponibilidad(producto, cantidadDeseada);
     }
-
+    
     @Override
-    public void eliminarVenta(Venta venta) {
-        getCtrlVentas().eliminar(venta);
-    }
-
-    @Override
-    public void guardarVenta(Venta venta) {
-        getCtrlVentas().agregar(venta);
+    public boolean completarVenta(double recibido) {
+        return getCtrlVentas().completarVenta(recibido);
     }
     
     @Override
-    public void agregarProductoCarrito(Producto producto, int cantidad){
-        getCtrlVentas().ingresarProducto(producto, cantidad);
+    public boolean agregarProductoCarrito(Producto producto, double cantidad){
+        return getCtrlVentas().ingresarProducto(producto, cantidad);
     }
 
     @Override
@@ -123,5 +119,25 @@ class FNegocios implements INegocios{
     @Override
     public List<Empleado> obtenerEmpleados() {
         return getCtrlEmpleados().buscarEmpleados();
+    }
+
+    @Override
+    public double obtenerTotalVenta() {
+        return getCtrlVentas().obtenerTotal();
+    }
+
+    @Override
+    public List<DetalleVenta> obtenerDetallesVenta() {
+        return ctrlVentas.obtenerDetallesVenta();
+    }
+
+    @Override
+    public double obtenerCambio(double recibido) {
+        return ctrlVentas.obtenerCambio(recibido);
+    }
+
+    @Override
+    public boolean editarDetalleVenta(Producto producto, double nuevaCantidad) {
+        return ctrlVentas.editarDetalleVenta(producto, nuevaCantidad);
     }
 }

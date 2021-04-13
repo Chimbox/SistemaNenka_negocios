@@ -11,98 +11,174 @@ import dominio.Venta;
 import fdatos.IDatos;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author laura
  */
-class ControlVentas extends Administrar<Venta>{
-    
+class ControlVentas {
+
     private ArrayList<DetalleVenta> productos;
+    private ControlProducto ctrlProductos;
     private Venta venta;
-    
+    private IDatos datos;
+
     /**
-     * Método constructor que se encarga de inicializar los productos que ingresaran
-     * a la venta.
+     * Método constructor que se encarga de inicializar los productos que
+     * ingresaran a la venta.
      */
-    public ControlVentas(IDatos datos){
-        super(datos);
+    public ControlVentas(IDatos datos, ControlProducto ctrlProductos) {
+        this.datos = datos;
         productos = new ArrayList<>();
+        this.ctrlProductos = ctrlProductos;
     }
-    
+
     /**
      * Método que se encarga de ingresar los productos a la venta
+     *
      * @param producto Producto que se va a ingresar a la venta
      * @param cantidad Cantidad del producto
      */
-    public void ingresarProducto(Producto producto, int cantidad){
-        float precioUnitario = producto.getPrecio();
-        float importe = cantidad * precioUnitario;
-        DetalleVenta ventaUnitaria = new DetalleVenta(cantidad, precioUnitario, importe, producto);
-        productos.add(ventaUnitaria);
-        
-        //Conexion con bd
-       datos.guardarProducto(producto);
-        
+    public boolean ingresarProducto(Producto producto, double cantidad) {
+
+        boolean yaExiste = false;
+        DetalleVenta ventaUnitaria = null;
+
+        for (DetalleVenta detalle : productos) {
+            if (detalle.getProducto().equals(producto)) {
+                yaExiste = true;
+                ventaUnitaria = detalle;
+                break;
+            }
+        }
+
+        if (yaExiste && ventaUnitaria != null) {
+            cantidad = ventaUnitaria.getCantidad() + cantidad;
+        }
+
+        if (ctrlProductos.validarDisponibilidad(producto, cantidad)) {
+
+            double precioUnitario = producto.getPrecio();
+            double importe = cantidad * precioUnitario;
+
+            ventaUnitaria = new DetalleVenta(cantidad, precioUnitario, importe, producto);
+
+            if (yaExiste) {
+                productos.set(productos.indexOf(ventaUnitaria), ventaUnitaria);
+            } else {
+                productos.add(ventaUnitaria);
+            }
+
+            calcularTotal();
+            return true;
+        }
+
+        return false;
     }
-    
+
+    public boolean editarDetalleVenta(Producto producto, double cantidad) {
+        producto=ctrlProductos.buscarProducto(producto.getId());
+        boolean yaExiste = false;
+        DetalleVenta ventaUnitaria = null;
+
+        for (DetalleVenta detalle : productos) {
+            if (detalle.getProducto().equals(producto)) {
+                yaExiste = true;
+                ventaUnitaria = detalle;
+                break;
+            }
+        }
+
+        if (yaExiste&&ctrlProductos.validarDisponibilidad(producto, cantidad)) {
+            
+            double precioUnitario = producto.getPrecio();
+            double importe = cantidad * precioUnitario;
+
+            ventaUnitaria.setImporte(importe);
+            ventaUnitaria.setCantidad(cantidad);
+
+            productos.set(productos.indexOf(ventaUnitaria), ventaUnitaria);
+
+            for (DetalleVenta producto1 : productos) {
+                System.out.println(producto1);
+            }
+            
+            calcularTotal();
+            return true;
+        }
+
+        return false;
+    }
+
     /**
-     * Método que calcula el total de la venta en base a cada producto y su importe 
-     * dentro de la venta
+     * Método que calcula el total de la venta con base en cada producto y su
+     * importe dentro de la venta
+     *
      * @return total de la venta
      */
-    public float calcularTotal(){
-        float total = 0;
+    public double calcularTotal() {
+        double total = 0;
         for (DetalleVenta producto : productos) {
             total = total + producto.getImporte();
         }
+        venta.setTotal(total);
         return total;
     }
-    
+
+    public double obtenerTotal() {
+        return venta.getTotal();
+    }
+
     /**
-     * Método que se encarga de mostrar las ventas realizas con base en las fechas 
-     * determinadas.
+     * Método que se encarga de mostrar las ventas realizas con base en las
+     * fechas determinadas.
+     *
      * @param fechaInicio Fecha de inicio
      * @param fechaFin Fecha fin
      * @return Ventas realizadas
      */
-    public ArrayList<Venta> consultarVentas(Date fechaInicio, Date fechaFin){
+    public ArrayList<Venta> consultarVentas(Date fechaInicio, Date fechaFin) {
         ArrayList<Venta> ventas = null;
-        
+
         //Conexion bd
-        
         return ventas;
     }
-    
-    public Venta crearNuevaVenta(){
-        productos=new ArrayList<>();
-        venta=new Venta();
+
+    public Venta crearNuevaVenta() {
+        productos = new ArrayList<>();
+        venta = new Venta();
+        venta.setFecha(new Date());
         return venta;
     }
 
-    @Override
-    public void agregar(Venta entidad) {
-        this.venta = entidad;
-        this.venta.setDetallesVentas(productos);
+    public boolean completarVenta(double recibido) {
         venta.setTotal(calcularTotal());
+
+        if (recibido < venta.getTotal()) {
+            return false;
+        }
+
+        venta.setDetallesVentas(productos);
+
         datos.guardarVenta(venta);
-        
-        ControlProducto cp = new ControlProducto(datos);
         for (DetalleVenta producto : venta.getDetallesVentas()) {
             Producto p = producto.getProducto();
-            p.setStock(p.getStock()-producto.getCantidad());
-            cp.eliminar(p);
+            p.setStock(p.getStock() - producto.getCantidad());
+            ctrlProductos.modificar(p);
+            //ctrlProductos.eliminar(p);
         }
+
+        crearNuevaVenta();
+
+        return true;
     }
 
-    @Override
-    public void eliminar(Venta entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<DetalleVenta> obtenerDetallesVenta() {
+        return productos;
     }
 
-    @Override
-    public void modificar(Venta entidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public double obtenerCambio(double recibido) {
+        return recibido - this.venta.getTotal();
     }
-    
 }

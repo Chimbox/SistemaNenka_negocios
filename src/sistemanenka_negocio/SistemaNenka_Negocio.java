@@ -51,7 +51,7 @@ public class SistemaNenka_Negocio {
         venta.setEmpleado(empleados.get(0));
         venta.setCliente(clientes.get(0));
         
-        negocios.guardarVenta(venta);
+        //negocios.guardarVenta(venta);
     }
     
 }
