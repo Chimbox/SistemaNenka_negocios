@@ -140,4 +140,9 @@ class FNegocios implements INegocios{
     public boolean editarDetalleVenta(Producto producto, double nuevaCantidad) {
         return ctrlVentas.editarDetalleVenta(producto, nuevaCantidad);
     }
+
+    @Override
+    public List<DetalleVenta> eliminarProductoCarrito(Producto producto, double cantidad) {
+        return ctrlVentas.eliminarProductoCarrito(producto, cantidad);
+    }
 }

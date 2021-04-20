@@ -181,4 +181,30 @@ class ControlVentas {
     public double obtenerCambio(double recibido) {
         return recibido - this.venta.getTotal();
     }
+    
+    public List<DetalleVenta> eliminarProductoCarrito(Producto producto, double cantidad){
+        
+        DetalleVenta detalle=obtenerProductoCarrito(producto);
+        if(detalle!=null){
+            double diferencia=detalle.getCantidad()-cantidad;
+            if(diferencia<=0){
+                productos.remove(detalle);
+            }else{
+                detalle.setCantidad(diferencia);
+                productos.set(productos.indexOf(detalle), detalle);
+            }
+        }
+        calcularTotal();
+        
+        return productos;
+    }
+    
+    private DetalleVenta obtenerProductoCarrito(Producto producto){
+        for (DetalleVenta prod : productos) {
+            if(prod.equals(producto)){
+                return prod;
+            }
+        }
+        return null;
+    }
 }

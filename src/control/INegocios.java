@@ -17,6 +17,7 @@ public interface INegocios {
     public double obtenerTotalVenta();
     public boolean completarVenta(double recibido);
     public boolean agregarProductoCarrito(Producto producto, double cantidad);
+    public List<DetalleVenta> eliminarProductoCarrito(Producto producto, double cantidad);
     public List<Producto> obtenerProductos();
     public List<Cliente> obtenerClientes();
     public List<Empleado> obtenerEmpleados();
