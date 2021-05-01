@@ -18,6 +18,8 @@ public interface INegocios {
     public boolean completarVenta(double recibido);
     public boolean agregarProductoCarrito(Producto producto, double cantidad);
     public List<DetalleVenta> eliminarProductoCarrito(Producto producto, double cantidad);
+    public List<DetalleVenta> eliminarProductoCarrito(Producto producto);
+    public List<Producto> buscarProducto(String parametro);
     public List<Producto> obtenerProductos();
     public List<Cliente> obtenerClientes();
     public List<Empleado> obtenerEmpleados();

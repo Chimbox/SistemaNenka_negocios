@@ -43,7 +43,7 @@ class ControlProducto extends Administrar<Producto>{
      * Método que se encarga de buscar un producto en base al nombre.
      * @param nombre Nombre del producto.
      * @return Producto encontrado en el inventario
-     */
+     *
     public Producto buscarProducto(String nombre){
         List<Producto> productos = datos.obtenerProductos();
         for (Producto producto : productos) {
@@ -54,6 +54,11 @@ class ControlProducto extends Administrar<Producto>{
         }
         return null;
         
+    }*/
+    
+    
+    public List<Producto> buscarProducto(String parametro){
+        return datos.buscarProductos(parametro);
     }
     
      boolean validarDisponibilidad(Producto producto, double cantidadDeseada){

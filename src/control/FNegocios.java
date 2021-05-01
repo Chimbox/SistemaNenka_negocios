@@ -128,21 +128,31 @@ class FNegocios implements INegocios{
 
     @Override
     public List<DetalleVenta> obtenerDetallesVenta() {
-        return ctrlVentas.obtenerDetallesVenta();
+        return getCtrlVentas().obtenerDetallesVenta();
     }
 
     @Override
     public double obtenerCambio(double recibido) {
-        return ctrlVentas.obtenerCambio(recibido);
+        return getCtrlVentas().obtenerCambio(recibido);
     }
 
     @Override
     public boolean editarDetalleVenta(Producto producto, double nuevaCantidad) {
-        return ctrlVentas.editarDetalleVenta(producto, nuevaCantidad);
+        return getCtrlVentas().editarDetalleVenta(producto, nuevaCantidad);
     }
 
     @Override
     public List<DetalleVenta> eliminarProductoCarrito(Producto producto, double cantidad) {
-        return ctrlVentas.eliminarProductoCarrito(producto, cantidad);
+        return getCtrlVentas().eliminarProductoCarrito(producto, cantidad);
+    }
+
+    @Override
+    public List<Producto> buscarProducto(String parametro) {
+        return getCtrlProductos().buscarProducto(parametro);
+    }
+
+    @Override
+    public List<DetalleVenta> eliminarProductoCarrito(Producto producto) {
+        return getCtrlVentas().eliminarProductoCarrito(producto);
     }
 }

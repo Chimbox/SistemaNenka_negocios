@@ -78,7 +78,7 @@ class ControlVentas {
     }
 
     public boolean editarDetalleVenta(Producto producto, double cantidad) {
-        producto=ctrlProductos.buscarProducto(producto.getId());
+        producto = ctrlProductos.buscarProducto(producto.getId());
         boolean yaExiste = false;
         DetalleVenta ventaUnitaria = null;
 
@@ -90,8 +90,8 @@ class ControlVentas {
             }
         }
 
-        if (yaExiste&&ctrlProductos.validarDisponibilidad(producto, cantidad)) {
-            
+        if (yaExiste && ctrlProductos.validarDisponibilidad(producto, cantidad)) {
+
             double precioUnitario = producto.getPrecio();
             double importe = cantidad * precioUnitario;
 
@@ -103,7 +103,7 @@ class ControlVentas {
             for (DetalleVenta producto1 : productos) {
                 System.out.println(producto1);
             }
-            
+
             calcularTotal();
             return true;
         }
@@ -181,27 +181,38 @@ class ControlVentas {
     public double obtenerCambio(double recibido) {
         return recibido - this.venta.getTotal();
     }
-    
-    public List<DetalleVenta> eliminarProductoCarrito(Producto producto, double cantidad){
-        
-        DetalleVenta detalle=obtenerProductoCarrito(producto);
-        if(detalle!=null){
-            double diferencia=detalle.getCantidad()-cantidad;
-            if(diferencia<=0){
+
+    public List<DetalleVenta> eliminarProductoCarrito(Producto producto, double cantidad) {
+
+        DetalleVenta detalle = obtenerProductoCarrito(producto);
+        if (detalle != null) {
+            double diferencia = detalle.getCantidad() - cantidad;
+            if (diferencia <= 0) {
                 productos.remove(detalle);
-            }else{
+            } else {
                 detalle.setCantidad(diferencia);
                 productos.set(productos.indexOf(detalle), detalle);
             }
         }
         calcularTotal();
-        
+
         return productos;
     }
-    
-    private DetalleVenta obtenerProductoCarrito(Producto producto){
+
+    public List<DetalleVenta> eliminarProductoCarrito(Producto producto) {
+
+        DetalleVenta detalle = obtenerProductoCarrito(producto);
+        if (detalle != null) {
+            productos.remove(detalle);
+        }
+        calcularTotal();
+
+        return productos;
+    }
+
+    private DetalleVenta obtenerProductoCarrito(Producto producto) {
         for (DetalleVenta prod : productos) {
-            if(prod.equals(producto)){
+            if (prod.getProducto().equals(producto)) {
                 return prod;
             }
         }
