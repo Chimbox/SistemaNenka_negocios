@@ -21,10 +21,12 @@ class ControlEmpleados extends Administrar<Empleado>{
 
     
     
-    public boolean iniciarSeson(String usuario, String contrasenia){
-        //Conexion bd
-        return true;
+    public Empleado iniciarSeson(String usuario, String contrasenia){
+      
+        return datos.buscarEmpleado(usuario, contrasenia);
+            
     }
+    
     
     /**
      * Método que se encarga de agregar empleados a la base de datos.
@@ -56,4 +58,6 @@ class ControlEmpleados extends Administrar<Empleado>{
     public List<Empleado> buscarEmpleados(){
         return datos.obtenerEmpleados();
     }
+    
+    
 }

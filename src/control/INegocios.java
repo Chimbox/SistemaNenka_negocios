@@ -23,6 +23,7 @@ public interface INegocios {
     public List<Producto> obtenerProductos();
     public List<Cliente> obtenerClientes();
     public List<Empleado> obtenerEmpleados();
+    public Empleado iniciarSesion(String usuario, String contrasena);
     public Venta nuevaVenta();
     public List<DetalleVenta> obtenerDetallesVenta();
     public double obtenerCambio(double recibido);

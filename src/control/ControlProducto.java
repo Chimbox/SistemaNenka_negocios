@@ -7,7 +7,6 @@ package control;
 
 import dominio.Producto;
 import fdatos.IDatos;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

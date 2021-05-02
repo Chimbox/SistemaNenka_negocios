@@ -155,4 +155,11 @@ class FNegocios implements INegocios{
     public List<DetalleVenta> eliminarProductoCarrito(Producto producto) {
         return getCtrlVentas().eliminarProductoCarrito(producto);
     }
+
+    @Override
+    public Empleado iniciarSesion(String usuario, String contrasena) {
+        return getCtrlEmpleados().iniciarSeson(usuario, contrasena);
+    }
+
+   
 }
