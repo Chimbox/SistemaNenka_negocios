@@ -60,6 +60,10 @@ class ControlProducto extends Administrar<Producto>{
         return datos.buscarProductos(parametro);
     }
     
+    public List<Producto> buscarProductoCategoria(String categoria){
+        return datos.buscarProductoCategoria(categoria);
+    }
+    
      boolean validarDisponibilidad(Producto producto, double cantidadDeseada){
         return datos.buscarProducto(producto.getId()).getStock()>=cantidadDeseada;
     }

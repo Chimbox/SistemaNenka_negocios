@@ -161,5 +161,10 @@ class FNegocios implements INegocios{
         return getCtrlEmpleados().iniciarSeson(usuario, contrasena);
     }
 
+    @Override
+    public List<Producto> buscarProductoCategoria(String categoria) {
+        return getCtrlProductos().buscarProductoCategoria(categoria);
+    }
+
    
 }

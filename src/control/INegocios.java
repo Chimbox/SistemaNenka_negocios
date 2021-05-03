@@ -5,7 +5,6 @@ import dominio.DetalleVenta;
 import dominio.Empleado;
 import dominio.Producto;
 import dominio.Venta;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,7 +18,8 @@ public interface INegocios {
     public boolean agregarProductoCarrito(Producto producto, double cantidad);
     public List<DetalleVenta> eliminarProductoCarrito(Producto producto, double cantidad);
     public List<DetalleVenta> eliminarProductoCarrito(Producto producto);
-    public List<Producto> buscarProducto(String parametro);
+    public List<Producto> buscarProducto(String parametro); 
+    public List<Producto> buscarProductoCategoria(String categoria);
     public List<Producto> obtenerProductos();
     public List<Cliente> obtenerClientes();
     public List<Empleado> obtenerEmpleados();
