@@ -26,6 +26,7 @@ public interface INegocios {
     public Empleado iniciarSesion(String usuario, String contrasena);
     public Venta nuevaVenta();
     public List<DetalleVenta> obtenerDetallesVenta();
+    public boolean generarReporteVenta();
     public double obtenerCambio(double recibido);
     public boolean editarDetalleVenta(Producto producto, double nuevaCantidad);
 }

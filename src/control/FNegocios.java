@@ -23,6 +23,7 @@ class FNegocios implements INegocios{
     private static ControlProducto ctrlProductos;
     private static ControlProveedores ctrlProveedores;
     private static ControlVentas ctrlVentas;
+    private static ControlReporte ctrlReporte;
     
 
     public FNegocios(IDatos datos) {
@@ -86,6 +87,13 @@ class FNegocios implements INegocios{
         return ctrlVentas;
     }
 
+    public static ControlReporte getCtrlReporte() {
+        if(ctrlReporte==null){
+            ctrlReporte=new ControlReporte(datos);
+        }
+        return ctrlReporte;
+    }
+    
     @Override
     public boolean validarDisponibilidad(Producto producto, double cantidadDeseada) {
         return getCtrlProductos().validarDisponibilidad(producto, cantidadDeseada);
@@ -166,5 +174,9 @@ class FNegocios implements INegocios{
         return getCtrlProductos().buscarProductoCategoria(categoria);
     }
 
-   
+    @Override
+    public boolean generarReporteVenta() {
+       return getCtrlReporte().generarReporte();
+        
+    }
 }
