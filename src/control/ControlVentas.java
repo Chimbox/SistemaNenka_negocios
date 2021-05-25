@@ -63,7 +63,7 @@ class ControlVentas {
             double importe = cantidad * precioUnitario;
 
             ventaUnitaria = new DetalleVenta(cantidad, precioUnitario, importe, producto);
-
+            ventaUnitaria.setVenta(venta);
             if (yaExiste) {
                 productos.set(productos.indexOf(ventaUnitaria), ventaUnitaria);
             } else {

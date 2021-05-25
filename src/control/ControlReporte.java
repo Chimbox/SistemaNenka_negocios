@@ -8,6 +8,8 @@ package control;
 import fdatos.IDatos;
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -28,7 +30,7 @@ public class ControlReporte {
         this.datos = datos;
     }
 
-    public boolean generarReporte() throws IOException {
+    public boolean generarReporte() {
         try {
             Connection conn = datos.getConnnection();
 
@@ -52,7 +54,10 @@ public class ControlReporte {
             
             System.out.println(ex.getMessage());
             return false;
+        } catch (IOException ex) {
+            Logger.getLogger(ControlReporte.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return false;
     }
 
 }
