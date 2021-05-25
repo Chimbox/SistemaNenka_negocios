@@ -8,6 +8,8 @@ package control;
 import fdatos.IDatos;
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
@@ -30,7 +32,7 @@ public class ControlReporte {
         this.datos = datos;
     }
 
-    public boolean generarReporte() {
+    public boolean generarReporte(Date fechaInicio, Date fechaFin) {
         try {
             Connection conn = datos.getConnnection();
 
@@ -40,7 +42,14 @@ public class ControlReporte {
 
             reporte = (JasperReport) JRLoader.loadObjectFromFile(currentPath);
 
-            JasperPrint jPrint = JasperFillManager.fillReport(reporte, null, conn);
+            HashMap<String, Object> parametros = new HashMap<>();
+            parametros.put("fechaI", fechaInicio.getTime());
+            parametros.put("fechaF", fechaFin.getTime());
+            
+            System.out.println(fechaFin.getTime() + " " + fechaInicio.getTime());
+            
+            
+            JasperPrint jPrint = JasperFillManager.fillReport(reporte, parametros, conn);
 
             JasperViewer view = new JasperViewer(jPrint, false);
 

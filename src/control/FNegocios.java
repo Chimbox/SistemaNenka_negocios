@@ -7,6 +7,7 @@ import dominio.Producto;
 import dominio.Venta;
 import fdatos.IDatos;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -178,7 +179,7 @@ class FNegocios implements INegocios{
     }
 
     @Override
-    public boolean generarReporteVenta() {
-            return getCtrlReporte().generarReporte();    
+    public boolean generarReporteVenta(Date fechaInicio, Date fechaFin) {
+            return getCtrlReporte().generarReporte(fechaInicio, fechaFin);    
     }
 }

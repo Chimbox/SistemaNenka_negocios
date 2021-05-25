@@ -5,6 +5,7 @@ import dominio.DetalleVenta;
 import dominio.Empleado;
 import dominio.Producto;
 import dominio.Venta;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,7 +27,7 @@ public interface INegocios {
     public Empleado iniciarSesion(String usuario, String contrasena);
     public Venta nuevaVenta();
     public List<DetalleVenta> obtenerDetallesVenta();
-    public boolean generarReporteVenta();
+    public boolean generarReporteVenta(Date fechaInicio, Date fechaFin);
     public double obtenerCambio(double recibido);
     public boolean editarDetalleVenta(Producto producto, double nuevaCantidad);
 }
