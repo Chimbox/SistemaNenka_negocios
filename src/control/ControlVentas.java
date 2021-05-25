@@ -5,7 +5,9 @@
  */
 package control;
 
+import dominio.Cliente;
 import dominio.DetalleVenta;
+import dominio.Empleado;
 import dominio.Producto;
 import dominio.Venta;
 import fdatos.IDatos;
@@ -152,8 +154,10 @@ class ControlVentas {
         return venta;
     }
 
-    public boolean completarVenta(double recibido) {
+    public boolean completarVenta(double recibido, Cliente cliente, Empleado empleado) {
         venta.setTotal(calcularTotal());
+        venta.setCliente(cliente);
+        venta.setEmpleado(empleado);
 
         if (recibido < venta.getTotal()) {
             return false;

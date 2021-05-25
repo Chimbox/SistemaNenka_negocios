@@ -103,8 +103,8 @@ class FNegocios implements INegocios{
     }
     
     @Override
-    public boolean completarVenta(double recibido) {
-        return getCtrlVentas().completarVenta(recibido);
+    public boolean completarVenta(double recibido, Cliente cliente, Empleado empleado) {
+        return getCtrlVentas().completarVenta(recibido, cliente, empleado);
     }
     
     @Override

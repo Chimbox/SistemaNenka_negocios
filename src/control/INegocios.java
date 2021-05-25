@@ -14,7 +14,7 @@ import java.util.List;
 public interface INegocios {
     public boolean validarDisponibilidad(Producto producto, double cantidadDeseada);
     public double obtenerTotalVenta();
-    public boolean completarVenta(double recibido);
+    public boolean completarVenta(double recibido, Cliente cliente, Empleado empleado);
     public boolean agregarProductoCarrito(Producto producto, double cantidad);
     public List<DetalleVenta> eliminarProductoCarrito(Producto producto, double cantidad);
     public List<DetalleVenta> eliminarProductoCarrito(Producto producto);
