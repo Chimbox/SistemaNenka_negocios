@@ -6,6 +6,7 @@
 package control;
 
 import fdatos.IDatos;
+import java.io.IOException;
 import java.sql.Connection;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import net.sf.jasperreports.engine.JRException;
@@ -27,14 +28,15 @@ public class ControlReporte {
         this.datos = datos;
     }
 
-    public boolean generarReporte() {
+    public boolean generarReporte() throws IOException {
         try {
             Connection conn = datos.getConnnection();
 
+            String currentPath = new java.io.File(".").getCanonicalPath() + "\\src\\reportes\\reporteVentas.jasper";
+            
             JasperReport reporte = null;
-            String path = "C:\\Users\\Daniel Ornelas\\Documents\\ESCUELA\\ITSON\\INTEGRADOR\\Proyecto\\Negocios\\src\\reportes\\reporteVentas.jasper";
 
-            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(currentPath);
 
             JasperPrint jPrint = JasperFillManager.fillReport(reporte, null, conn);
 
@@ -47,6 +49,8 @@ public class ControlReporte {
             return true;
 
         } catch (JRException ex) {
+            
+            System.out.println(ex.getMessage());
             return false;
         }
     }
