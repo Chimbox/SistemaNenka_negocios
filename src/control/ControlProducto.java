@@ -25,7 +25,7 @@ class ControlProducto extends Administrar<Producto>{
      */
     @Override
     public void agregar(Producto entidad) {
-        //Conexion bd
+        datos.guardarProducto(entidad);
     }
 
     /**
@@ -35,7 +35,7 @@ class ControlProducto extends Administrar<Producto>{
      */
     @Override
     public void eliminar(Producto entidad) {
-        datos.guardarProducto(entidad);
+        
     }
     
     /**

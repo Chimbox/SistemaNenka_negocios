@@ -1,9 +1,11 @@
 package control;
 
+import dominio.Categoria;
 import dominio.Cliente;
 import dominio.DetalleVenta;
 import dominio.Empleado;
 import dominio.Producto;
+import dominio.Proveedor;
 import dominio.Venta;
 import fdatos.IDatos;
 import java.io.IOException;
@@ -37,7 +39,7 @@ class FNegocios implements INegocios{
 
     public static ControlCategoria getCtrlCategorias() {
         if(ctrlCategorias==null){
-            ctrlCategorias=new ControlCategoria(datos);
+            ctrlCategorias = new ControlCategoria(datos);
         }
         return ctrlCategorias;
     }
@@ -127,6 +129,16 @@ class FNegocios implements INegocios{
     public List<Cliente> obtenerClientes() {
         return getCtrlClientes().buscarClientes();
     }
+    
+    @Override
+    public List<Categoria> obtenerCategorias() {
+        return getCtrlCategorias().obtenerCategorias();
+    }
+    
+    @Override
+    public List<Proveedor> obtenerProveedores() {
+        return getCtrlProveedores().obtenerProveedore();
+    }
 
     @Override
     public List<Empleado> obtenerEmpleados() {
@@ -177,6 +189,21 @@ class FNegocios implements INegocios{
     public List<Producto> buscarProductoCategoria(String categoria) {
         return getCtrlProductos().buscarProductoCategoria(categoria);
     }
+
+    @Override
+    public boolean guardarProducto(Categoria c, Proveedor p, String nom, float precio, float stock, int codigo) {
+        getCtrlProductos().agregar(new Producto(codigo, precio, nom, stock, c, p));
+        return true;
+    }
+
+    
+
+    @Override
+    public boolean modificarProducto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
 
     @Override
     public boolean generarReporteVenta(Date fechaInicio, Date fechaFin) {

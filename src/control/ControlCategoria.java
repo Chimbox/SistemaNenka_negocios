@@ -6,8 +6,10 @@
 package control;
 
 import dominio.Categoria;
+import dominio.Cliente;
 import dominio.Producto;
 import fdatos.IDatos;
+import java.util.List;
 
 /**
  *
@@ -44,4 +46,9 @@ class ControlCategoria extends Administrar<Categoria>{
     public void modificar(Categoria entidad) {
         //Conexion bd
     }
+    
+    public List<Categoria> obtenerCategorias(){
+        return datos.obtenerCategorias();
+    }
+    
 }

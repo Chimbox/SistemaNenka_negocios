@@ -5,8 +5,10 @@
  */
 package control;
 
+import dominio.Categoria;
 import dominio.Proveedor;
 import fdatos.IDatos;
+import java.util.List;
 
 /**
  *
@@ -44,6 +46,10 @@ class ControlProveedores extends Administrar<Proveedor>{
     @Override
     public void modificar(Proveedor entidad) {
         //Conexion bd
+    }
+    
+    public List<Proveedor> obtenerProveedore(){
+        return datos.obtenerProveedores();
     }
     
 }

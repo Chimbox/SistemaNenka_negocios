@@ -36,7 +36,7 @@ public class ControlReporte {
         try {
             Connection conn = datos.getConnnection();
 
-            String currentPath = new java.io.File(".").getCanonicalPath() + "\\src\\reportes\\reporteVentas.jasper";
+            String currentPath = new java.io.File(".").getCanonicalPath() + "\\src\\reportes\\reporte.jasper";
             
             JasperReport reporte = null;
 

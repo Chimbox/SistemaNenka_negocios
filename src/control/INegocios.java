@@ -1,9 +1,11 @@
 package control;
 
+import dominio.Categoria;
 import dominio.Cliente;
 import dominio.DetalleVenta;
 import dominio.Empleado;
 import dominio.Producto;
+import dominio.Proveedor;
 import dominio.Venta;
 import java.util.Date;
 import java.util.List;
@@ -24,8 +26,12 @@ public interface INegocios {
     public List<Producto> obtenerProductos();
     public List<Cliente> obtenerClientes();
     public List<Empleado> obtenerEmpleados();
+    public List<Categoria> obtenerCategorias();
+    public List<Proveedor> obtenerProveedores();
     public Empleado iniciarSesion(String usuario, String contrasena);
     public Venta nuevaVenta();
+    public boolean guardarProducto(Categoria c, Proveedor p, String nom, float precio, float stock, int codigo);
+    public boolean modificarProducto();
     public List<DetalleVenta> obtenerDetallesVenta();
     public boolean generarReporteVenta(Date fechaInicio, Date fechaFin);
     public double obtenerCambio(double recibido);
