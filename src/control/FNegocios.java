@@ -199,8 +199,9 @@ class FNegocios implements INegocios{
     
 
     @Override
-    public boolean modificarProducto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean modificarProducto(Categoria c, Proveedor p, String nom, float precio, float stock, int codigo) {
+        getCtrlProductos().modificar(new Producto(codigo, precio, nom, stock, c, p));
+        return true;
     }
     
     

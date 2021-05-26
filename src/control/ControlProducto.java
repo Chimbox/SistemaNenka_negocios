@@ -74,7 +74,15 @@ class ControlProducto extends Administrar<Producto>{
      */
     @Override
     public void modificar(Producto entidad) {
-        datos.guardarProducto(entidad);
+        
+        for (Producto p : datos.obtenerProductos()) {
+            if(p.getCodigo()==entidad.getCodigo()){
+                p.setCategoria(entidad.getCategoria());
+                p.setNombre(entidad.getNombre());
+                p.setPrecio(entidad.getPrecio());
+                datos.guardarProducto(p);
+            }
+        }
     }
     
     public Producto buscarProducto(int id){

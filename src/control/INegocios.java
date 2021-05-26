@@ -31,7 +31,7 @@ public interface INegocios {
     public Empleado iniciarSesion(String usuario, String contrasena);
     public Venta nuevaVenta();
     public boolean guardarProducto(Categoria c, Proveedor p, String nom, float precio, float stock, int codigo);
-    public boolean modificarProducto();
+    public boolean modificarProducto(Categoria c, Proveedor p, String nom, float precio, float stock, int codigo);
     public List<DetalleVenta> obtenerDetallesVenta();
     public boolean generarReporteVenta(Date fechaInicio, Date fechaFin);
     public double obtenerCambio(double recibido);
